@@ -34,5 +34,5 @@ html > body textarea,
 html > body pre,
 html > body button {
 	font-family: 'GmarketSansMedium';
-	font-size: 3rem; /* 임시 */
+	font-size: 2rem; /* 임시 */
 }

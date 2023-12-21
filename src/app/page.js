@@ -2,7 +2,13 @@
 
 import { useState } from "react";
 
-const NumberRecordForm = ({ number, setNumber, resetNumber, saveNumbers }) => {
+const NumberRecordForm = ({
+  number,
+  setNumber,
+  resetNumber,
+  saveNumbers,
+  deleteAllNumbers,
+}) => {
   return (
     <>
       <div className="flex items-center gap-x-2">
@@ -27,12 +33,23 @@ const NumberRecordForm = ({ number, setNumber, resetNumber, saveNumbers }) => {
         <button className="btn" onClick={saveNumbers}>
           기록
         </button>
+        <button className="btn btn-error" onClick={deleteAllNumbers}>
+          기록 전체 삭제
+        </button>
       </div>
     </>
   );
 };
 
-const NumberRecordListItem = ({ number, index, removeNumber }) => {
+const NumberRecordListItem = ({
+  number,
+  index,
+  removeNumber,
+  modifyNumber,
+}) => {
+  const [inputNumberValue, setInputNumberValue] = useState(number);
+  const [editModeStatus, setEditModeStatus] = useState(false);
+
   return (
     <>
       <li key={index} className="flex items-center gap-x-3">
@@ -45,12 +62,50 @@ const NumberRecordListItem = ({ number, index, removeNumber }) => {
         >
           삭제
         </button>
+
+        {editModeStatus ? (
+          <>
+            <input
+              className="w-[200px]"
+              type="number"
+              min="0"
+              placeholder="수정할 숫자를 입력해주세요."
+              value={inputNumberValue}
+              onChange={(e) => setInputNumberValue(e.target.value)}
+            />
+            <button
+              className="btn btn-outline btn-secondary"
+              onClick={() => {
+                modifyNumber(index, inputNumberValue) == false
+                  ? setEditModeStatus(true)
+                  : setEditModeStatus(false);
+              }}
+            >
+              수정완료
+            </button>
+            <button
+              className="btn btn-outline btn-secondary"
+              onClick={() => {
+                setInputNumberValue(number), setEditModeStatus(false);
+              }}
+            >
+              수정취소
+            </button>
+          </>
+        ) : (
+          <button
+            className="btn btn-outline btn-secondary"
+            onClick={() => setEditModeStatus(true)}
+          >
+            수정
+          </button>
+        )}
       </li>
     </>
   );
 };
 
-const NumberRecordList = ({ numberRecord, removeNumber }) => {
+const NumberRecordList = ({ numberRecord, removeNumber, modifyNumber }) => {
   return (
     <>
       <div>
@@ -67,6 +122,7 @@ const NumberRecordList = ({ numberRecord, removeNumber }) => {
                     number={number}
                     index={index}
                     removeNumber={removeNumber}
+                    modifyNumber={modifyNumber}
                   />
                 ))}
               </ul>
@@ -80,10 +136,14 @@ const NumberRecordList = ({ numberRecord, removeNumber }) => {
 
 export default function Home() {
   const [number, setNumber] = useState(0);
-  const [numberRecord, setNumberRecord] = useState([]);
+  const [numberRecord, setNumberRecord] = useState([10, 20, 30]);
 
   const resetNumber = () => {
     setNumber(0);
+  };
+
+  const deleteAllNumbers = () => {
+    setNumberRecord([]);
   };
 
   const saveNumbers = () => {
@@ -98,6 +158,19 @@ export default function Home() {
     setNumberRecord(newNumbersRecord);
   };
 
+  const modifyNumber = (index, newNumber) => {
+    if (newNumber.trim() == "") {
+      alert("숫자를 입력해주세요.");
+      return false;
+    }
+
+    const newNumbers = numberRecord.map((_number, _index) =>
+      _index != index ? _number : newNumber
+    );
+
+    setNumberRecord(newNumbers);
+  };
+
   return (
     <>
       <NumberRecordForm
@@ -105,11 +178,13 @@ export default function Home() {
         setNumber={setNumber}
         resetNumber={resetNumber}
         saveNumbers={saveNumbers}
+        deleteAllNumbers={deleteAllNumbers}
       />
 
       <NumberRecordList
         numberRecord={numberRecord}
         removeNumber={removeNumber}
+        modifyNumber={modifyNumber}
       />
     </>
   );
