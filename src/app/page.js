@@ -3,7 +3,17 @@
 import { useState, useRef } from "react";
 
 const NewTodoForm = ({ addTodo: _addTodo }) => {
+  const formInputNoRef = useRef(null);
   const [newTodoTitle, setNewTodoTitle] = useState("");
+
+  const notice = () => {
+    formInputNoRef.current.focus();
+
+    if (newTodoTitle.trim().length == 0) {
+      alert("할 일을 입력해주세요.");
+      return;
+    }
+  };
 
   const addTodo = () => {
     if (newTodoTitle.trim().length == 0) return;
@@ -15,8 +25,15 @@ const NewTodoForm = ({ addTodo: _addTodo }) => {
 
   return (
     <>
-      <div className="flex gap-x-3 items-center">
+      <form
+        className="flex gap-x-3 items-center"
+        onSubmit={(e) => {
+          e.preventDefault();
+          notice();
+        }}
+      >
         <input
+          ref={formInputNoRef}
           type="text"
           placeholder="새 할일을 입력해주세요."
           value={newTodoTitle}
@@ -26,7 +43,7 @@ const NewTodoForm = ({ addTodo: _addTodo }) => {
         <button className="btn btn-primary" onClick={addTodo}>
           할 일 추가
         </button>
-      </div>
+      </form>
     </>
   );
 };
