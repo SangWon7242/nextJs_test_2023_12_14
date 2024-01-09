@@ -4,28 +4,30 @@ import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 
-/*
-// 커스텀 테마
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#ff8686",
-      contrastText: "#fff",
-    },
-    secondary: {
-      main: "#19857b",
-    },
-  },
-});
-*/
-
 export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Button className="" variant="contained">
-          Contained
-        </Button>
+        <div className="tw-flex tw-items-center tw-gap-x-3">
+          <Button variant="text">Text</Button>
+          <Button variant="contained">Contained</Button>
+          <Button variant="outlined">Outlined</Button>
+        </div>
+
+        <div className="tw-flex tw-items-center tw-gap-x-3 tw-mt-3">
+          <Button
+            variant="contained"
+            onClick={() => alert("버튼이 클릭되었습니다.")}
+          >
+            Contained
+          </Button>
+          <Button variant="contained" disabled>
+            Disabled
+          </Button>
+          <Button variant="contained" href="/sub">
+            sub
+          </Button>
+        </div>
       </ThemeProvider>
     </>
   );

@@ -9,7 +9,9 @@ export default function RootLayout({ children }) {
   return (
     <html>
       <body>
-        <h1 className="tw-text-[2rem] tw-font-bold">test</h1>
+        <a className="tw-text-[2rem] tw-font-bold" href="/">
+          MUI 테스트
+        </a>
         {children}
       </body>
     </html>
