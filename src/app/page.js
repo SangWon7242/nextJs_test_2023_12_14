@@ -2,6 +2,7 @@
 
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+import { MdDelete } from "react-icons/md";
 import theme from "./theme";
 
 export default function App() {
@@ -21,7 +22,7 @@ export default function App() {
           >
             Contained
           </Button>
-          <Button variant="contained" disabled>
+          <Button variant="contained" startIcon={<MdDelete />}>
             Disabled
           </Button>
           <Button variant="contained" href="/sub">
