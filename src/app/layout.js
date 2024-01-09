@@ -8,12 +8,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-      <body>
-        <a className="tw-text-[2rem] tw-font-bold" href="/">
-          MUI 테스트
-        </a>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
