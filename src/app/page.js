@@ -8,10 +8,14 @@ import {
   Snackbar,
   Alert as MuiAlert,
   Backdrop,
-  CircularProgress
+  CircularProgress,
+  Drawer,
+  List,  
+  ListItemButton
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
+import Link from "next/link";
 
 
 export default function App() {
@@ -24,13 +28,21 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <Button variant="contained" onClick={() => setOpen(true)}>Show backdrop</Button>
-        <Backdrop
-        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={open}
-        onClick={() => setOpen(false)}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+        <Drawer
+            anchor="left"
+            open={open}
+            onClose={() => setOpen(false)}
+          >
+            <List>
+              <ListItemButton>
+                <Link href="/write" legacyBehavior>
+                  <a>글작성</a> 
+                </Link>
+              </ListItemButton>
+              <ListItemButton>당근</ListItemButton>
+              <ListItemButton>딸기</ListItemButton>
+            </List>
+          </Drawer>
       </ThemeProvider>
     </>
   );
