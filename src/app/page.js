@@ -10,39 +10,32 @@ import {
   Backdrop,
   CircularProgress,
   Drawer,
-  List,  
-  ListItemButton
+  List,
+  ListItemButton,
+  Tabs,
+  Tab,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import Link from "next/link";
 
-
 export default function App() {
-  const [open, setOpen] = React.useState(false);
-
-  const alertRef = React.useRef(null);
-  // ref는 컴포넌트에 전달되지 않는다.
+  const [tab1CurrentIndex, setTab1CurrentIndex] = React.useState(0);
 
   return (
     <>
       <ThemeProvider theme={theme}>
-        <Button variant="contained" onClick={() => setOpen(true)}>Show backdrop</Button>
-        <Drawer
-            anchor="left"
-            open={open}
-            onClose={() => setOpen(false)}
-          >
-            <List>
-              <ListItemButton>
-                <Link href="/write" legacyBehavior>
-                  <a>글작성</a> 
-                </Link>
-              </ListItemButton>
-              <ListItemButton>당근</ListItemButton>
-              <ListItemButton>딸기</ListItemButton>
-            </List>
-          </Drawer>
+        <Tabs
+          value={tab1CurrentIndex}
+          onChange={(_, newValue) => setTab1CurrentIndex(newValue)}
+        >
+          <Tab label="Item One" />
+          <Tab label="Item Two" />
+          <Tab label="Item Three" />
+        </Tabs>
+        {tab1CurrentIndex == 0 && <div>내용1</div>}
+        {tab1CurrentIndex == 1 && <div>내용2</div>}
+        {tab1CurrentIndex == 2 && <div>내용3</div>}
       </ThemeProvider>
     </>
   );
