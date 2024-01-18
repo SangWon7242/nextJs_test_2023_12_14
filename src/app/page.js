@@ -130,8 +130,16 @@ function App() {
                     color="primary"
                   />
                 </div>
-                <div className="tw-p-10 tw-rounded-[20px] tw-shadow tw-whitespace-pre-wrap tw-leading-relaxed tw-break-words hover:tw-text-[color:var(--mui-color-primary-main)]">
-                  {todo.content}
+                <div className="tw-flex tw-p-10 tw-rounded-[20px] tw-shadow">
+                  <div className="tw-bg-red-300 tw-w-[150px] tw-flex-shrink-0">
+                    좌
+                  </div>
+                  <div className="tw-bg-blue-300 tw-flex-grow tw-whitespace-pre-wrap tw-leading-relaxed tw-break-words hover:tw-text-[color:var(--mui-color-primary-main)]">
+                    {todo.content}
+                  </div>
+                  <div className="tw-bg-green-300 tw-w-[150px] tw-flex-shrink-0">
+                    우
+                  </div>
                 </div>
               </div>
             </li>
