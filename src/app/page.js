@@ -12,7 +12,7 @@ import {
   Box,
 } from "@mui/material";
 import { FaBars } from "react-icons/fa";
-import theme from "./theme";
+import RootTheme from "./theme";
 import dateToStr from "./dateUtil";
 
 function useTodosState() {
@@ -130,8 +130,8 @@ function App() {
                     color="primary"
                   />
                 </div>
-                <div className="tw-p-10 tw-rounded-[20px] tw-shadow tw-whitespace-pre-wrap tw-leading-relaxed tw-break-words">
-                  <Box sx={{ color: "primary.main" }}>{todo.content}</Box>
+                <div className="tw-p-10 tw-rounded-[20px] tw-shadow tw-whitespace-pre-wrap tw-leading-relaxed tw-break-words hover:tw-text-[color:var(--mui-color-primary-main)]">
+                  {todo.content}
                 </div>
               </div>
             </li>
@@ -143,6 +143,8 @@ function App() {
 }
 
 export default function themeApp() {
+  const theme = RootTheme();
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
