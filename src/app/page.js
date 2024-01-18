@@ -131,9 +131,9 @@ function App() {
                   />
                 </div>
                 <div className="tw-flex tw-p-10 tw-rounded-[20px] tw-shadow">
-                  <div className="tw-bg-red-300 tw-w-[150px] tw-flex-shrink-0">
-                    좌
-                  </div>
+                  <Button className="tw-w-[150px] tw-flex-shrink-0 tw-items-start">
+                    <span>체크박스</span>
+                  </Button>
                   <div className="tw-bg-blue-300 tw-flex-grow tw-whitespace-pre-wrap tw-leading-relaxed tw-break-words hover:tw-text-[color:var(--mui-color-primary-main)]">
                     {todo.content}
                   </div>

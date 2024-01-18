@@ -3,14 +3,17 @@
 @tailwind utilities;
 
 @font-face {
-	font-family: 'GmarketSansMedium';
-	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
+  font-family: "GmarketSansMedium";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
-html, body, #root {
-	height: 100%;
+html,
+body,
+#root {
+  height: 100%;
 }
 
 html > body,
@@ -19,7 +22,7 @@ html > body select,
 html > body textarea,
 html > body pre,
 html > body button {
-	font-family: 'GmarketSansMedium';
+  font-family: "GmarketSansMedium";
 }
 
 body {
@@ -88,5 +91,5 @@ video {
   box-sizing: border-box;
   border-width: 0;
   border-style: solid;
-  border-color: theme('borderColor.DEFAULT', currentColor);
+  border-color: theme("borderColor.DEFAULT", currentColor);
 }

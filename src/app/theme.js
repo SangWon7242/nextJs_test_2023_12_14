@@ -18,6 +18,9 @@ const muiThemePaletteKeys = [
 
 export default function RootTheme() {
   const theme = createTheme({
+    typography: {
+      fontFamily: ["GmarketSansMedium"],
+    },
     palette: {
       primary: {
         main: "#ff8686",
